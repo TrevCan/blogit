@@ -75,20 +75,25 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/article_header.html >> $@; \
-	sed -e 1d -e '2{/^$$/d}' \
+	sed -e 1d \
 		-e '/^;/d' \
 		-e 's/</\&lt;/g' \
 		-e 's/>/\&gt;/g' \
-		-e '/^####/{s,^####,<h4>,;s,$$,</h4>,p;d}' \
-		-e '/^###/{s,^###,<h3>,;s,$$,</h3>,p;d}' \
-		-e '/^##/{s,^##,<h2>,;s,$$,</h2>,p;d}' \
-		-e '/^#/{s,^#,<h1>,;s,$$,</h1>,p;d}' \
+		-e '/^```$$/{s,.*,,;x;p;/^<\/code>/d;s,.*,<pre><code>,;bT}' \
+		-e 'x;/<\/code>/{x;$$G;p;d};x' \
+		-e '/^####/{s,^####,<h4>,;s,$$,</h4>,;H;s,.*,,;x;p;d}' \
+		-e '/^###/{s,^###,<h3>,;s,$$,</h3>,;H;s,.*,,;x;p;d}' \
+		-e '/^##/{s,^##,<h2>,;s,$$,</h2>,;H;s,.*,,;x;p;d}' \
+		-e '/^#/{s,^#,<h1>,;s,$$,</h1>,;H;s,.*,,;x;p;d}' \
 		-e 's,\*\*\(\([^*][^*]*\*\?\)*\)\*\*,<b>\1</b>,g' \
 		-e 's,\*\([^*][^*]*\)\*,<i>\1</i>,g' \
 		-e 's,!\[\([^]]*\)\](\([^)]*\)),<img src="\2" alt="\1"/>,g' \
 		-e 's,\[\([^]]*\)\](\([^)]*\)),<a href="\2">\1</a>,g' \
 		-e 's,`\([^`]*\)`,<q>\1</q>,g' \
-		-n -e '/^$$/{x;s,^,<p>,;s,$$,</p>,;p;d};H;$${x;p}' \
+		-e '/^$$/{x;/^$$/d;p;d}' \
+		-e 'x;/^$$/{s,.*,<p>,;bT};x' \
+		-e ':L;$$G;p;d' \
+		-e ':T;p;:t;s,<\([^/>][^>]*\)>\(\(<[^/>][^>]*>\)*\),\2</\1>,;/<[^\/>]/bt;x;/^$$/{$${x;p};d};bL' \
 		"$<" | envsubst >> $@; \
 	envsubst < templates/article_footer.html >> $@; \
 	envsubst < templates/footer.html >> $@; \
