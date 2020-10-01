@@ -91,6 +91,7 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 		-e 's,\[\([^]]*\)\](\([^)]*\)),<a href="\2">\1</a>,g' \
 		-e 's,`\([^`]*\)`,<q>\1</q>,g' \
 		-e '/^- /{s,^- ,<li>,;s,$$,</li>,;x;/^<\/ul>/{x;bL};p;s,.*,<ul>,;bT}' \
+		-e '/^[1-9][0-9]*\. /{s,^[0-9]*\. ,<li>,;s,$$,</li>,;x;/^<\/ol>/{x;bL};p;s,.*,<ol>,;bT}' \
 		-e '/^$$/{x;/^$$/d;p;d}' \
 		-e 'x;/^$$/{s,.*,<p>,;bT};x' \
 		-e ':L;$$G;p;d' \
