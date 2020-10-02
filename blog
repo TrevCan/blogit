@@ -1,5 +1,6 @@
 #!/usr/bin/make -f
 
+BLOG := $(MAKE) -f $(lastword $(MAKEFILE_LIST)) --no-print-directory
 ifneq ($(filter-out help,$(MAKECMDGOALS)),)
 include config
 endif
@@ -12,56 +13,111 @@ BLOG_DATE_FORMAT ?= %x %X
 .PHONY: help init build deploy clean
 
 ARTICLES = $(shell git ls-tree HEAD --name-only -- articles/ 2>/dev/null)
+TAGFILES = $(patsubst articles/%,tags/%,$(ARTICLES))
 
 help:
 	$(info blog init|build|deploy|clean)
 
 init:
-	git init
-	git config user.name '$(shell printf "Git user name: ">/dev/tty; head -n1)'
-	git config user.email '$(shell printf "Git user email: ">/dev/tty; head -n1)'
 	mkdir -p articles data templates
 	printf '<!DOCTYPE html><html><head><title>$$TITLE</title></head><body>' > templates/header.html
 	printf '</body></html>' > templates/footer.html
-	printf '<ul>' > templates/index_header.html
-	printf '<li><a href="$$URL">$$DATE $$TITLE</a></li>' > templates/index_entry.html
-	printf '</ul>' > templates/index_footer.html
+	printf '' > templates/index_header.html
+	printf '<p>Tags:' > templates/tag_list_header.html
+	printf '<a href="$$URL">$$NAME</a>' > templates/tag_entry.html
+	printf ', ' > templates/tag_separator.html
+	printf '</p>' > templates/tag_list_footer.html
+	printf '<h2>Articles</h2><ul>' > templates/article_list_header.html
+	printf '<li><a href="$$URL">$$DATE $$TITLE</a></li>' > templates/article_entry.html
+	printf '' > templates/article_separator.html
+	printf '</ul>' > templates/article_list_footer.html
+	printf '' > templates/index_footer.html
+	printf '' > templates/tag_index_header.html
+	printf '' > templates/tag_index_footer.html
 	printf '<h1>$$TITLE</h1>' > templates/article_header.html
 	printf '' > templates/article_footer.html
 	printf 'blog\n' > .git/info/exclude
-	git add .
-	git commit -em "Initial commit"
 
-build: blog/index.html $(patsubst articles/%,blog/%.html,$(ARTICLES))
+build: blog/index.html tagpages $(patsubst articles/%,blog/%.html,$(ARTICLES))
 
 deploy: build
 	rsync -rLtvz blog/ data/ $(BLOG_REMOTE)
 
 clean:
-	rm -rf blog
+	rm -rf blog tags
 
 config:
 	printf 'BLOG_REMOTE:=%s\n' \
 		'$(shell printf "Blog remote (eg: host:/var/www/html): ">/dev/tty; head -n1)' \
 		> $@
 
-blog/index.html: $(ARTICLES) $(addprefix templates/,$(addsuffix .html,header index_header index_entry index_footer footer))
+tags/%: articles/%
+	mkdir -p tags
+	grep -i '^; *tags:' "$<" | cut -d: -f2- | sed 's/  */\n/g' | sed '/^$$/d' | sort -u > $@
+
+blog/index.html: $(ARTICLES) $(TAGFILES) $(addprefix templates/,$(addsuffix .html,header index_header tag_list_header tag_entry tag_separator tag_list_footer article_list_header article_entry article_separator article_list_footer index_footer footer))
 	mkdir -p blog
 	TITLE="index"; \
 	export TITLE; \
-	envsubst < templates/header.html > $@
-	envsubst < templates/index_header.html >> $@
+	envsubst < templates/header.html > $@; \
+	envsubst < templates/index_header.html >> $@; \
+	envsubst < templates/tag_list_header.html >> $@; \
+	first=true; \
+	for t in $(shell cat $(TAGFILES) | sort -u); do \
+		"$$first" || envsubst < templates/tag_separator.html; \
+		NAME="$$t" \
+		URL="@$$t.html" \
+		envsubst < templates/tag_entry.html; \
+		first=false; \
+	done >> $@; \
+	envsubst < templates/tag_list_footer.html >> $@; \
+	envsubst < templates/article_list_header.html >> $@; \
+	first=true; \
 	for f in $(ARTICLES); do \
 		printf '%s ' "$$f"; \
-		git log --diff-filter=A --date="format:%s $(BLOG_DATE_FORMAT_INDEX)" --pretty=format:'%ad ' -- "$$f"; \
+		git log --diff-filter=A --date="format:%s $(BLOG_DATE_FORMAT_INDEX)" --pretty=format:'%ad%n' -- "$$f"; \
 	done | sort -k2nr | cut -d" " -f1,3- | while IFS=" " read -r FILE DATE; do \
+		"$$first" || envsubst < templates/article_separator.html; \
 		URL="`printf '%s' "\$$FILE" | sed 's,^articles/,,'`.html" \
 		DATE="$$DATE" \
 		TITLE="`head -n1 "\$$FILE"`" \
-		envsubst < templates/index_entry.html; \
-	done >> $@
-	envsubst < templates/index_footer.html >> $@
-	envsubst < templates/footer.html >> $@
+		envsubst < templates/article_entry.html; \
+		first=false; \
+	done >> $@; \
+	envsubst < templates/article_list_footer.html >> $@; \
+	envsubst < templates/index_footer.html >> $@; \
+	envsubst < templates/footer.html >> $@; \
+
+
+blog/tag/%.html: $(ARTICLES) $(addprefix templates/,$(addsuffix .html,header tag_header index_entry tag_footer footer))
+
+.PHONY: tagpages
+tagpages: $(TAGFILES)
+	+$(BLOG) $(patsubst %,blog/@%.html,$(shell cat $(TAGFILES) | sort -u))
+
+blog/@%.html: $(TAGFILES) $(addprefix templates/,$(addsuffix .html,header index_header tag_list_header tag_entry tag_separator tag_list_footer article_list_header article_entry article_separator article_list_footer index_footer footer))
+	mkdir -p blog
+	TITLE="Articles tagged $*"; \
+	export TITLE; \
+	envsubst < templates/header.html > $@; \
+	envsubst < templates/tag_index_header.html >> $@; \
+	envsubst < templates/article_list_header.html >> $@; \
+	first=true; \
+	for f in $(shell grep -FH '$*' $(TAGFILES) | sed 's,^tags/\([^:]*\):.*,articles/\1,'); do \
+		printf '%s ' "$$f"; \
+		git log --diff-filter=A --date="format:%s $(BLOG_DATE_FORMAT_INDEX)" --pretty=format:'%ad%n' -- "$$f"; \
+	done | sort -k2nr | cut -d" " -f1,3- | while IFS=" " read -r FILE DATE; do \
+		"$$first" || envsubst < templates/article_separator.html; \
+		URL="`printf '%s' "\$$FILE" | sed 's,^articles/,,'`.html" \
+		DATE="$$DATE" \
+		TITLE="`head -n1 "\$$FILE"`" \
+		envsubst < templates/article_entry.html; \
+		first=false; \
+	done >> $@; \
+	envsubst < templates/article_list_footer.html >> $@; \
+	envsubst < templates/tag_index_footer.html >> $@; \
+	envsubst < templates/footer.html >> $@; \
+
 
 blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_header article_footer footer))
 	mkdir -p blog
@@ -99,3 +155,4 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 		"$<" | envsubst >> $@; \
 	envsubst < templates/article_footer.html >> $@; \
 	envsubst < templates/footer.html >> $@; \
+

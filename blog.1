@@ -71,6 +71,19 @@ Links are inserted using the following syntax: "[link text](url)".
 Lines starting with a semi-colon are comments and are ignored.
 It can be used to store metadata.
 In particular, comments beginning with "tags:" indicate tags and are available in the templates in the TAGS variable.
+.TP
+.B Code blocks
+Code blocks start and end with ``` (this marker must be on its own line).
+The content is not formatted, and will appear as writter in the source file.
+.TP
+.B
+Unordered lists
+Each item starts with "- ".
+.TP
+.B
+Ordered lists
+Each item starts with "1. ", "2. " and so on.
+The numbers are not checked, so any number can actually be used.
 
 .SH TEMPLATES
 Templates are small HTML code chunks that are used to build the blog pages.
@@ -85,14 +98,34 @@ The index page is built using the following templates:
 
 - index_header.html;
 
-- index_entry.html, for each article entry;
+- tag_list_header.html;
+
+- tag_entry.html, for each tag;
+
+- tag_separator.html, between each tag;
+
+- tag_list_footer.html;
+
+- article_list_header.html;
+
+- article_entry.html, for each article entry;
+
+- article_separator.html, between each article;
+
+- article_list_footer.html;
 
 - index_footer.html;
 
 - footer.html.
 
 The TITLE variable will contain "index".
-In index_entry, the following additional variables are available:
+In tag_entry, the following additional variables are available:
+
+- URL, containing the (relative) URL of the tag index page;
+
+- NAME, the tag name.
+
+In article_entry, the following additional variables are available:
 
 - URL, containing the (relative) URL of the article;
 
