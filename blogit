@@ -16,7 +16,7 @@ ARTICLES = $(shell git ls-tree HEAD --name-only -- articles/ 2>/dev/null)
 TAGFILES = $(patsubst articles/%,tags/%,$(ARTICLES))
 
 help:
-	$(info blog init|build|deploy|clean)
+	$(info blogit init|build|deploy|clean)
 
 init:
 	mkdir -p articles data templates

@@ -1,18 +1,18 @@
-.TH BLOG 1 blog\-1.0
+.TH BLOG 1 blogit\-1.0
 .SH NAME
-blog \- a small static blog generator
+blogit \- a small static blog generator
 
 .SH SYNOPSIS
-.B blog
+.B blogit
 .RB [ init | build | deploy | clean ]
 
 .SH DESCRIPTION
-.B blog
+.B blogit
 is a small static blog generator, using a markdown-like syntax and git capabilities.
 For example, first posted and last edited dates are extracted from git history.
 
 .SH GETTING STARTED
-Run "blog init" and follow the interactive configuration.
+Run "blogit init" and follow the interactive configuration.
 This will create the basic structure and initialize a git repository.
 
 .SH STRUCTURE
@@ -30,13 +30,13 @@ directory and will be copied at the root of the website.
 
 .SH WORKFLOW
 The articles, templates and data can be created and edited offline.
-To create a local version of the blog, run "blog build".
+To create a local version of the blog, run "blogit build".
 It will be available in the
 .B blog
 directory, and the main page is index.html.
 Note that only articles known to git will be created (this is to prevent unfinished articles to be published).
-When its ready for publication, commit the changes to the git repository, and build the blog using "blog build".
-Then run "blog deploy" to publish the site with
+When its ready for publication, commit the changes to the git repository, and build the blog using "blogit build".
+Then run "blogit deploy" to publish the site with
 .BR rsync (1)
 to the remote configured at the beginning.
 
