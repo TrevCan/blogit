@@ -95,10 +95,12 @@ blog/tag/%.html: $(ARTICLES) $(addprefix templates/,$(addsuffix .html,header tag
 tagpages: $(TAGFILES)
 	+$(BLOG) $(patsubst %,blog/@%.html,$(shell cat $(TAGFILES) | sort -u))
 
-blog/@%.html: $(TAGFILES) $(addprefix templates/,$(addsuffix .html,header index_header tag_list_header tag_entry tag_separator tag_list_footer article_list_header article_entry article_separator article_list_footer index_footer footer))
+blog/@%.html: $(TAGFILES) $(addprefix templates/,$(addsuffix .html,header tag_index_header tag_list_header tag_entry tag_separator tag_list_footer article_list_header article_entry article_separator article_list_footer tag_index_footer footer))
 	mkdir -p blog
 	TITLE="Articles tagged $*"; \
+	TAGS="$*"; \
 	export TITLE; \
+	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/tag_index_header.html >> $@; \
 	envsubst < templates/article_list_header.html >> $@; \
