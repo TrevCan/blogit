@@ -41,7 +41,7 @@ init:
 build: blog/index.html tagpages $(patsubst articles/%,blog/%.html,$(ARTICLES))
 
 deploy: build
-	rsync -rLtvz blog/ data/ $(BLOG_REMOTE)
+	rsync -rLtvz $(BLOG_RSYNC_OPTS) blog/ data/ $(BLOG_REMOTE)
 
 clean:
 	rm -rf blog tags
