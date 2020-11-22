@@ -142,8 +142,10 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 		-e '/^;/d' \
 		-e 's/</\&lt;/g' \
 		-e 's/>/\&gt;/g' \
+		-e 's/&/\&amp;/g' \
 		-e '/^```$$/{s,.*,,;x;p;/^<\/code>/d;s,.*,<pre><code>,;bT}' \
-		-e 'x;/<\/code>/{x;$$G;p;d};x' \
+		-e 'x;/<\/code>/{x;s,\$$,\&#36;,g;$$G;p;d};x' \
+		-e 's,\\\$$,\&#36;,g' \
 		-e '/^####/{s,^####,<h4>,;s,$$,</h4>,;H;s,.*,,;x;p;d}' \
 		-e '/^###/{s,^###,<h3>,;s,$$,</h3>,;H;s,.*,,;x;p;d}' \
 		-e '/^##/{s,^##,<h2>,;s,$$,</h2>,;H;s,.*,,;x;p;d}' \
