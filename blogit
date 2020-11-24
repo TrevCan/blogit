@@ -140,9 +140,9 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 	envsubst < templates/article_header.html >> $@; \
 	sed -e 1d \
 		-e '/^;/d' \
+		-e 's/&/\&amp;/g' \
 		-e 's/</\&lt;/g' \
 		-e 's/>/\&gt;/g' \
-		-e 's/&/\&amp;/g' \
 		-e '/^```$$/{s,.*,,;x;p;/^<\/code>/d;s,.*,<pre><code>,;bT}' \
 		-e 'x;/<\/code>/{x;s,\$$,\&#36;,g;$$G;p;d};x' \
 		-e 's,\\\$$,\&#36;,g' \
