@@ -130,6 +130,8 @@ blog/%.html: articles/% $(addprefix templates/,$(addsuffix .html,header article_
 	mkdir -p blog
 	TITLE="$(shell head -n1 $<)"; \
 	export TITLE; \
+	AUTHOR="$(shell git log -n 1 --reverse --format="%cn" -- "$<")"; \
+	export AUTHOR; \
 	DATE_POSTED="$(shell git log --diff-filter=A --date="format:$(BLOG_DATE_FORMAT)" --pretty=format:'%ad' -- "$<")"; \
 	export DATE_POSTED; \
 	DATE_EDITED="$(shell git log -n 1 --date="format:$(BLOG_DATE_FORMAT)" --pretty=format:'%ad' -- "$<")"; \
