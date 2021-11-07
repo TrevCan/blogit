@@ -8,6 +8,6 @@ just testing new
 
 body text body text
 
-```c
+```
 printf("Hello, world!\n");
 ```
