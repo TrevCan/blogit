@@ -1,6 +1,6 @@
 options:
-	@echo "clean | build | deploy | show | git-show"
-	@echo "main: clean build deploy git-show"
+	@echo "clean | build | deploy | show | git-status"
+	@echo "main: clean build deploy git-status"
 
 main: clean build deploy git-show
 
@@ -17,7 +17,7 @@ deploy:
 show:
 	xdg-open www/index.html
 
-git-show:
+git-status:
 	git status
 
 
