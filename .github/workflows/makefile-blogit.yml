@@ -15,6 +15,6 @@ jobs:
     - uses: actions/checkout@v2
   
     - name: Run makefile 
-      run: make all
+      run: make main
       
       

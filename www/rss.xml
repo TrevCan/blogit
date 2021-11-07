@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>blog</title>
+<link>http://localhost/blog</link>
+<description>blog</description>
+<item>
+<title>this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
+<link>http://localhost/blog/test.html</link>
+<guid>http://localhost/blog/test.html</guid>
+<pubDate>Sat, 06 Nov 2021 23:23:30 -0600</pubDate>
+<description>; comment don't see m1!</description>
+</item>
+</channel>
+</rss>
