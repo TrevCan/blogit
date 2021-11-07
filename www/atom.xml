@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">blog</title>
+<subtitle type="text">blog</subtitle>
+<updated>2021-11-07T00:01:06Z</updated>
+<link rel="alternate" type="text/html" href="http://localhost/blog"/>
+<id>http://localhost/blog/atom.xml</id>
+<link rel="self" type="application/atom+xml" href="http://localhost/blog/atom.xml"/>
+<entry>
+<title type="text">this is indeed a title and shouldb e!</title>
+<link rel="alternate" type="text/html" href="http://localhost/blog/test.html"/>
+<id>http://localhost/blog/test.html</id>
+<published>2021-11-06T23:23:30Z</published>
+<updated>2021-11-06T23:23:30Z</updated>
+<author><name>Hector Canizales</name></author>
+<summary type="text">; comment don't see m1!</summary>
+</entry>
+</feed>
