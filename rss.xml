@@ -8,14 +8,14 @@
 <title>just testing new </title>
 <link>http://localhost/blog/new.html</link>
 <guid>http://localhost/blog/new.html</guid>
-<pubDate>Sun, 07 Nov 2021 16:55:01 -0600</pubDate>
+<pubDate>Sun, 07 Nov 2021 17:10:27 -0600</pubDate>
 <description># this should be big</description>
 </item>
 <item>
 <title>this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
 <link>http://localhost/blog/test.html</link>
 <guid>http://localhost/blog/test.html</guid>
-<pubDate>Sun, 07 Nov 2021 16:55:01 -0600</pubDate>
+<pubDate>Sun, 07 Nov 2021 17:10:27 -0600</pubDate>
 <description>; comment don't see m1!</description>
 </item>
 </channel>
