@@ -12,3 +12,5 @@ to get started on learning how to use blogit,
 - clone the repo (https://pedantic.software/git/blogit).
 - run `man -l blogit.1` inside the repo directory. That should get you
 	started
+	
+	
