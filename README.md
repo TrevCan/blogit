@@ -15,7 +15,5 @@ to get started on learning how to use blogit,
 	
 	
 # todo
-- add `.redirect[.new]` functionality
-  - any files ending with `.redirect` or `.redirect.new` (to open links in new
-  tabs) will convert into html and add a link redirection thingy.
-- just pushing stuff...
+[x] add `.redirect[.new]` functionality (only missing .new funcitonality)
+[x] improve docs in this readme and main non-[features]
