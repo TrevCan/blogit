@@ -1,7 +1,12 @@
 this is a title!
 
-All articles are stored under
-```
-articles/
-```
-and the filename can be anything!
+All articles are stored under the articles/ dir
+
+and the filename can be anything ending with `.md`.
+
+Also, you do not have to specify the date anywhere in your articles,
+blogit will automatically find it for you based on the date you
+committed the file. That is, 
+**files that are not tracked by git will not be compiled!** 
+nice feature, right ?
+
