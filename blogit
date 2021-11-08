@@ -8,8 +8,8 @@ endif
 # The following can be configured in config
 BLOG_DATE_FORMAT_INDEX ?= %x
 BLOG_DATE_FORMAT ?= %x %X
-BLOG_TITLE ?= blog
-BLOG_DESCRIPTION ?= blog
+BLOG_TITLE ?= trevcan's blog
+BLOG_DESCRIPTION ?= the blog by trevcan
 BLOG_URL_ROOT ?= http://trevcan.github.io/blogit
 BLOG_FEED_MAX ?= 1000
 BLOG_FEEDS ?= rss atom
@@ -24,6 +24,8 @@ BLOG_WEBSITE_NAME ?= $(BLOG_WEBSITE_SHELL_PROMPT) $
 
 BLOG_AUTHOR_ALIAS ?= trevcan
 BLOG_AUTHOR ?= Hector Canizales
+BLOG_REDIRECT_TARGET ?= 
+BLOG_REDIRECT_TIME ?= 3
 
 
 
@@ -223,3 +225,25 @@ blog/atom.xml: $(ARTICLES)
 			"`sed -n '1d;/^$$/{2{d;b};q};p' < $$FILE`"; \
 	done >> $@
 	printf '</feed>\n' >> $@
+
+redirect: redirects
+
+redirects: 
+	for target in data/*.redirect; do \
+		printf "$$target \n\t " ; \
+		printf "Found\n\t$$target\n\t\t" ; \
+		cat $$target;  \
+		target_html=$${$\target%.redirect}.html ; \
+		echo "$${new}" ; \
+		cat $$target ; \
+		BLOG_REDIRECT_TARGET="$$(cat $$target | tr -d '\n')" ; \
+		export BLOG_REDIRECT_TITLE="$$(./get_title.sh $$BLOG_REDIRECT_TARGET)" ; \
+		export BLOG_REDIRECT_TARGET="$$(cat $$target)" ; \
+		export BLOG_REDIRECT_TIME="$(BLOG_REDIRECT_TIME)" ; \
+		export BLOG_AUTHOR="$(BLOG_AUTHOR)"; \
+		export BLOG_AUTHOR_ALIAS="$(BLOG_AUTHOR_ALIAS)"; \
+		export TITLE="$(BLOG_TITLE)"; \
+		export BLOG_URL_ROOT="$(BLOG_URL_ROOT)" ; \
+		export BLOG_WEBSITE_NAME="$(BLOG_WEBSITE_NAME)"; \
+		envsubst < templates/redirect.html > $$target_html ; \
+	done;   \
