@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-<title type="text">blog</title>
-<subtitle type="text">blog</subtitle>
-<updated>2021-11-08T15:04:19Z</updated>
+<title type="text">trevcan's blog</title>
+<subtitle type="text">the blog by trevcan</subtitle>
+<updated>2021-11-08T21:08:52Z</updated>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit"/>
 <id>http://trevcan.github.io/blogit/atom.xml</id>
 <link rel="self" type="application/atom+xml" href="http://trevcan.github.io/blogit/atom.xml"/>
@@ -10,18 +10,27 @@
 <title type="text">this is me!</title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/about.html"/>
 <id>http://trevcan.github.io/blogit/about.html</id>
-<published>2021-11-08T09:03:46Z</published>
-<updated>2021-11-08T09:03:46Z</updated>
+<published>2021-11-08T15:08:25Z</published>
+<updated>2021-11-08T15:08:25Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text"># hello there, human! This is a BIG heading
 Add some about yourself info here or anything you want, really.</summary>
 </entry>
 <entry>
+<title type="text">this is a title!</title>
+<link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/idk-words.html"/>
+<id>http://trevcan.github.io/blogit/idk-words.html</id>
+<published>2021-11-08T15:08:25Z</published>
+<updated>2021-11-08T15:08:25Z</updated>
+<author><name>Hector Canizales</name></author>
+<summary type="text">All articles are stored under the articles/ dir</summary>
+</entry>
+<entry>
 <title type="text">just testing new </title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/new.html"/>
 <id>http://trevcan.github.io/blogit/new.html</id>
-<published>2021-11-08T09:03:46Z</published>
-<updated>2021-11-08T09:03:46Z</updated>
+<published>2021-11-08T15:08:25Z</published>
+<updated>2021-11-08T15:08:25Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text"># this should be big</summary>
 </entry>
@@ -29,9 +38,18 @@ Add some about yourself info here or anything you want, really.</summary>
 <title type="text">this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/test.html"/>
 <id>http://trevcan.github.io/blogit/test.html</id>
-<published>2021-11-08T09:03:46Z</published>
-<updated>2021-11-08T09:03:46Z</updated>
+<published>2021-11-08T15:08:25Z</published>
+<updated>2021-11-08T15:08:25Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text">; comment don't see m1!</summary>
+</entry>
+<entry>
+<title type="text">hllo</title>
+<link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/yatest.html"/>
+<id>http://trevcan.github.io/blogit/yatest.html</id>
+<published>2021-11-08T15:08:25Z</published>
+<updated>2021-11-08T15:08:25Z</updated>
+<author><name>Hector Canizales</name></author>
+<summary type="text">yatestt</summary>
 </entry>
 </feed>
