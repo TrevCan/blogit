@@ -29,7 +29,7 @@ BLOG_REDIRECT_TIME ?= 3
 
 
 
-.PHONY: help init build deploy clean
+.PHONY: help init build deploy clean redirect redirects 
 
 ARTICLES = $(shell git ls-tree HEAD --name-only -- $(BLOG_SRC)/ 2>/dev/null)
 TAGFILES = $(patsubst $(BLOG_SRC)/%.md,tags/%,$(ARTICLES))
