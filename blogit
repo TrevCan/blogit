@@ -22,6 +22,9 @@ BLOG_WEBSITE_SHELL_PATH ?= /random/yourpath
 BLOG_WEBSITE_SHELL_PROMPT ?= $(BLOG_WEBSITE_SHELL_USER)@$(BLOG_WEBSITE_SHELL_HOST) $(BLOG_WEBSITE_SHELL_PATH)
 BLOG_WEBSITE_NAME ?= $(BLOG_WEBSITE_SHELL_PROMPT) $
 
+BLOG_AUTHOR_ALIAS ?= trevcan
+BLOG_AUTHOR ?= Hector Canizales
+
 
 
 .PHONY: help init build deploy clean
@@ -74,6 +77,8 @@ blog/index.html: $(ARTICLES) $(TAGFILES) $(addprefix templates/,$(addsuffix .htm
 	TITLE="$(BLOG_TITLE)"; \
 	export TITLE; \
 	export BLOG_WEBSITE_NAME="$(BLOG_WEBSITE_NAME)"; \
+	export BLOG_AUTHOR_ALIAS="$(BLOG_AUTHOR_ALIAS)"; \
+	export BLOG_AUTHOR="$(BLOG_AUTHOR)"; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/index_header.html >> $@; \
 	envsubst < templates/tag_list_header.html >> $@; \
@@ -116,6 +121,8 @@ blog/@%.html: $(TAGFILES) $(addprefix templates/,$(addsuffix .html,header tag_in
 	TAGS="$*"; \
 	export TITLE; \
 	export BLOG_WEBSITE_NAME="$(BLOG_WEBSITE_NAME)"; \
+	export BLOG_AUTHOR_ALIAS="$(BLOG_AUTHOR_ALIAS)"; \
+	export BLOG_AUTHOR="$(BLOG_AUTHOR)"; \
 	export TAGS; \
 	envsubst < templates/header.html > $@; \
 	envsubst < templates/tag_index_header.html >> $@; \
@@ -142,6 +149,8 @@ blog/%.html: $(BLOG_SRC)/%.md $(addprefix templates/,$(addsuffix .html,header ar
 	TITLE="$(shell head -n1 $<)"; \
 	export TITLE; \
 	export BLOG_WEBSITE_NAME="$(BLOG_WEBSITE_NAME)"; \
+	export BLOG_AUTHOR_ALIAS="$(BLOG_AUTHOR_ALIAS)"; \
+	export BLOG_AUTHOR="$(BLOG_AUTHOR)"; \
 	AUTHOR="$(shell git log -n 1 --reverse --format="%cn" -- "$<")"; \
 	export AUTHOR; \
 	DATE_POSTED="$(shell git log --diff-filter=A --date="format:$(BLOG_DATE_FORMAT)" --pretty=format:'%ad' -- "$<")"; \
