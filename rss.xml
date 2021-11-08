@@ -2,20 +2,28 @@
 <rss version="2.0">
 <channel>
 <title>blog</title>
-<link>http://localhost/blog</link>
+<link>http://trevcan.github.io/blogit</link>
 <description>blog</description>
 <item>
+<title>this is me!</title>
+<link>http://trevcan.github.io/blogit/about.html</link>
+<guid>http://trevcan.github.io/blogit/about.html</guid>
+<pubDate>Mon, 08 Nov 2021 08:56:41 -0600</pubDate>
+<description># hello there, human! This is a BIG heading
+Add some about yourself info here or anything you want, really.</description>
+</item>
+<item>
 <title>just testing new </title>
-<link>http://localhost/blog/new.html</link>
-<guid>http://localhost/blog/new.html</guid>
-<pubDate>Mon, 08 Nov 2021 08:08:25 -0600</pubDate>
+<link>http://trevcan.github.io/blogit/new.html</link>
+<guid>http://trevcan.github.io/blogit/new.html</guid>
+<pubDate>Mon, 08 Nov 2021 08:56:41 -0600</pubDate>
 <description># this should be big</description>
 </item>
 <item>
 <title>this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
-<link>http://localhost/blog/test.html</link>
-<guid>http://localhost/blog/test.html</guid>
-<pubDate>Mon, 08 Nov 2021 08:08:25 -0600</pubDate>
+<link>http://trevcan.github.io/blogit/test.html</link>
+<guid>http://trevcan.github.io/blogit/test.html</guid>
+<pubDate>Mon, 08 Nov 2021 08:56:41 -0600</pubDate>
 <description>; comment don't see m1!</description>
 </item>
 </channel>
