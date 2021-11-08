@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">blog</title>
 <subtitle type="text">blog</subtitle>
-<updated>2021-11-08T15:01:34Z</updated>
+<updated>2021-11-08T15:04:19Z</updated>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit"/>
 <id>http://trevcan.github.io/blogit/atom.xml</id>
 <link rel="self" type="application/atom+xml" href="http://trevcan.github.io/blogit/atom.xml"/>
@@ -10,8 +10,8 @@
 <title type="text">this is me!</title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/about.html"/>
 <id>http://trevcan.github.io/blogit/about.html</id>
-<published>2021-11-08T08:56:41Z</published>
-<updated>2021-11-08T08:56:41Z</updated>
+<published>2021-11-08T09:03:46Z</published>
+<updated>2021-11-08T09:03:46Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text"># hello there, human! This is a BIG heading
 Add some about yourself info here or anything you want, really.</summary>
@@ -20,8 +20,8 @@ Add some about yourself info here or anything you want, really.</summary>
 <title type="text">just testing new </title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/new.html"/>
 <id>http://trevcan.github.io/blogit/new.html</id>
-<published>2021-11-08T08:56:41Z</published>
-<updated>2021-11-08T08:56:41Z</updated>
+<published>2021-11-08T09:03:46Z</published>
+<updated>2021-11-08T09:03:46Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text"># this should be big</summary>
 </entry>
@@ -29,8 +29,8 @@ Add some about yourself info here or anything you want, really.</summary>
 <title type="text">this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
 <link rel="alternate" type="text/html" href="http://trevcan.github.io/blogit/test.html"/>
 <id>http://trevcan.github.io/blogit/test.html</id>
-<published>2021-11-08T08:56:41Z</published>
-<updated>2021-11-08T08:56:41Z</updated>
+<published>2021-11-08T09:03:46Z</published>
+<updated>2021-11-08T09:03:46Z</updated>
 <author><name>Hector Canizales</name></author>
 <summary type="text">; comment don't see m1!</summary>
 </entry>
