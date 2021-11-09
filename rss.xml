@@ -8,7 +8,7 @@
 <title>this is me!</title>
 <link>http://trevcan.github.io/blogit/about.html</link>
 <guid>http://trevcan.github.io/blogit/about.html</guid>
-<pubDate>Mon, 08 Nov 2021 23:05:56 -0600</pubDate>
+<pubDate>Mon, 08 Nov 2021 23:24:16 -0600</pubDate>
 <description># hello there, human! This is a BIG heading
 Add some about yourself info here or anything you want, really.</description>
 </item>
@@ -16,28 +16,28 @@ Add some about yourself info here or anything you want, really.</description>
 <title>this is a title!</title>
 <link>http://trevcan.github.io/blogit/idk-words.html</link>
 <guid>http://trevcan.github.io/blogit/idk-words.html</guid>
-<pubDate>Mon, 08 Nov 2021 23:05:56 -0600</pubDate>
+<pubDate>Mon, 08 Nov 2021 23:24:16 -0600</pubDate>
 <description>All articles are stored under the articles/ dir</description>
 </item>
 <item>
 <title>just testing new </title>
 <link>http://trevcan.github.io/blogit/new.html</link>
 <guid>http://trevcan.github.io/blogit/new.html</guid>
-<pubDate>Mon, 08 Nov 2021 23:05:56 -0600</pubDate>
+<pubDate>Mon, 08 Nov 2021 23:24:16 -0600</pubDate>
 <description># this should be big</description>
 </item>
 <item>
 <title>this is indeed a title and shouldb e! i wanna see if i change title it changes date!</title>
-<link>http://trevcan.github.io/blogit/test.html</link>
-<guid>http://trevcan.github.io/blogit/test.html</guid>
-<pubDate>Mon, 08 Nov 2021 23:05:56 -0600</pubDate>
+<link>http://trevcan.github.io/blogit/testing.html</link>
+<guid>http://trevcan.github.io/blogit/testing.html</guid>
+<pubDate>Mon, 08 Nov 2021 23:24:16 -0600</pubDate>
 <description>; comment don't see m1!</description>
 </item>
 <item>
 <title>hllo</title>
 <link>http://trevcan.github.io/blogit/yatest.html</link>
 <guid>http://trevcan.github.io/blogit/yatest.html</guid>
-<pubDate>Mon, 08 Nov 2021 23:05:56 -0600</pubDate>
+<pubDate>Mon, 08 Nov 2021 23:24:16 -0600</pubDate>
 <description>yatestt</description>
 </item>
 </channel>
