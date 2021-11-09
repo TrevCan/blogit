@@ -10,3 +10,7 @@ committed the file. That is,
 **files that are not tracked by git will not be compiled!** 
 nice feature, right ?
 
+> quotes do not (*yet*) work,
+
+> I'll have to think of some fancy styling
+
