@@ -229,7 +229,7 @@ blog/atom.xml: $(ARTICLES)
 redirect: redirects
 
 redirects: 
-	for target in data/*.redirect; do \
+	for target in $$(find data/ -name '*.redirect'); do \
 		printf "$$target \n\t " ; \
 		printf "Found\n\t$$target\n\t\t" ; \
 		cat $$target;  \
