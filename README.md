@@ -9,6 +9,7 @@ blogging system.
 I'm using *pedantic*'s software: [`blogit`](https://pedantic.software/git/blogit). 
 It doesn't have a license. Literally. So yeah
 
+
 # features
 - files not tracked by git will not be compiled!
 - beautiful hacker-like theme
@@ -25,6 +26,14 @@ It doesn't have a license. Literally. So yeah
 	your static site and push the content to the `gh-pages` branch. This
 	can be easily changed through the yaml action workflow.
 - no cookies. Also, no javascript.
+
+
+## Dependencies
+- rsync
+- git
+- make
+- [maybe in the future the markdown perl thing] to support a wider
+	markdown syntax, quotes aren't supported yet!
 
 # getting started
 to get started on learning how to use blogit, 
